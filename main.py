@@ -58,7 +58,6 @@ mongo = MongoOperations()
 
 @st.cache_data
 def get_textpads(room):
-    print("<get_textpads> Fetching data from DB")
     mongo.get_textpads(room)
 
 def addTextPad():
@@ -111,7 +110,7 @@ with st.sidebar:
         
 
 
-if st.session_state.currentPage == "Home":
+if st.session_state.currentPage == "Home":    
     st.markdown("""
         <h1 style='text-align: center; color: black; margin-bottom: 5%; padding: 0;'>
             Collab
@@ -127,18 +126,31 @@ if st.session_state.currentPage == "Home":
         </h3>""", unsafe_allow_html=True)
     
     if st.query_params.get("room_code"):
-        st.markdown(f"""
-        <h5 style='text-align: center; color: black; margin-top: 5%;'>
-            You are now connected to room<br>{st.query_params.get("room_code")}
-        </h5>
-        """, unsafe_allow_html=True)
-
+        if mongo.check_room_existance(st.query_params.get("room_code")):
+            st.markdown(f"""
+            <h5 style='text-align: center; color: black; margin-top: 5%;'>
+                You are now connected to room<br>{st.query_params.get("room_code")}
+            </h5>
+            """, unsafe_allow_html=True)
+        else:
+            st.query_params.pop("room_code")
+            st.session_state.currentPage = "Home"
+            st.rerun()
 
 
     else:
         CreateRoom = st.button("Create Room", key="createRoom")
         if CreateRoom: 
-            st.query_params["room_code"] = ''.join(random.choice(string.ascii_lowercase) for _ in range(6))
+            roomCode = ''.join(random.choice(string.ascii_lowercase) for _ in range(6))
+            st.query_params["room_code"] = roomCode
+            temp_data = {
+                "room": roomCode,
+                "content": "",
+                "editable": False,
+                "unique_id": str(uuid4()).split("-")[-1],
+                "last_modified_at": datetime.now()
+            }
+            mongo.add_textpad(temp_data)
             st.rerun()
         
         st.markdown("""
