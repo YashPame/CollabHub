@@ -1,0 +1,125 @@
+header{
+    visibility: hidden;
+    height: 0;
+}
+
+div[data-testid="stMainBlockContainer"]{
+    padding-top: 0;
+}
+
+
+
+
+
+.st-key-menu .stButton{
+    max-width: 70%;
+}
+
+.st-key-menu div.stButton > button{
+    width: 100%;
+}
+
+.st-key-menu .st-key-calendar,
+.st-key-menu .st-key-text-share{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.st-key-menu .st-key-calendar{
+    margin-bottom: 50px;
+}
+
+.st-key-menu{
+    padding-top: 50px;
+}
+
+
+
+
+
+
+
+.st-key-createRoom div.stButton > button, 
+.st-key-joinRoom div.stButton > button{
+    height: 10%;
+    width: 40%;
+    font-size: 2%;
+    margin: 0 auto;
+    display: block;
+}
+
+.st-key-join-room div.stButton > button{
+    height: 10%;
+    width: 40%;
+    font-size: 2%;
+    margin: 0 auto;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.st-key-text-share-container div[data-testid="stVerticalBlockBorderWrapper"]{
+    margin-bottom: 10px;
+}
+
+[class*="st-key-container-textpad-"]{
+    position: relative;
+    min-height: 100px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+[class*="st-key-container-textpad-"] div[data-testid="stButton"]{
+    max-width: 40px;
+}
+
+
+[class*="st-key-container-textpad-"] [class*="st-key-delete-textpad-"]{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: -35px;
+    top: -35px;
+}
+[class*="st-key-container-textpad-"] [class*="st-key-edit-textpad-"]{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 10px;
+    top: -35px;
+}
+
+
+[class*="st-key-container-textpad-"] button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+[class*="st-key-container-textpad-"] button p{
+    font-size: 12px;
+}
+
+
+
+
+.st-key-tab-heading div.stButton > button{
+    height: 10%;
+    width: auto;
+    font-size: 2%;
+    margin: 0 auto;
+    display: block;
+}
+
